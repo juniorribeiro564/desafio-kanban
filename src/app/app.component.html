@@ -1,0 +1,131 @@
+<div class="content">
+    <h1 class="align-center">Kanban</h1>
+    <div class="change-card">
+        <div class="width-25" style="margin: 10px;">
+            <h2>NOVO</h2>
+            <div>
+                <form [formGroup]="cardForm" (ngSubmit)="adicionarCard()">
+                    <input class="margin-10" formControlName="title" id="title" for="title" ngtype="text" placeholder="Titulo da tarefa"
+                        required>
+
+                    <textarea rows="4" cols="23" formControlName="description" id="description" for="description"
+                        ngtype="text" placeholder="Descrição" required></textarea>
+
+                    <select class="select-new" [(ngModel)]=statusSelected formControlName="stage" id="stage" for="cardForm">
+                        <option value="" selected disabled hidden>Choose here</option>
+                        <option [value]="s.value" *ngFor="let s of status">
+                            {{s.nome}}
+                        </option>
+                    </select>
+                    <button class="select-new" type="submit">Adicionar Cartao</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="width-25">
+            <h2 class="margin-0">TO DO</h2>
+            <div class="align-center container-card" *ngFor="let datas of getListTodo">
+                <div *ngIf="datas.alteracaoCard">
+                    <input class="margin-10 input-text-card" [(ngModel)]=datas.novoTitulo type="text"
+                        placeholder="{{datas.titulo}}">
+                    <textarea class="text-area-card" rows="4" cols="23"
+                        [(ngModel)]=datas.novoConteudo type="text" placeholder="{{datas.conteudo}}"></textarea>
+                    <select class="select" [(ngModel)]=statusChange>
+                        <option value="" selected disabled hidden>{{datas.lista}}</option>
+                        <option [value]="s.value" *ngFor="let s of status">
+                            {{s.nome}}
+                        </option>
+                    </select>
+                    <div>
+                        <button class="button-card" (click)="alterarCard(datas)">Alterar Cartão</button>
+                    </div>
+                </div>
+
+                <div *ngIf="!datas.alteracaoCard">
+                    <div class="img-change">
+                        <img class="width-15 margin-3" (click)="alterarCard(datas)"
+                            src="../assets/icone-escrever.png" alt="">
+                    </div>
+                    <div class="title">{{datas.titulo}}</div>
+                    <p class="border-bottom"></p>
+                    <p class="description">{{datas.conteudo}}</p>
+                </div>
+                <div class="img-delete"><img class="width-15" (click)="excluirCard(datas.id)"
+                        src="../assets/delete-189.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="width-25">
+            <h2 class="margin-0">DOING</h2>
+            <div class="align-center container-card" *ngFor="let datas of getListDoing">
+                <div *ngIf="datas.alteracaoCard">
+                    <input class="margin-10 input-text-card" [(ngModel)]=datas.novoTitulo type="text"
+                        placeholder="{{datas.titulo}}">
+                    <textarea class="text-area-card" rows="4" cols="23"
+                        [(ngModel)]=datas.novoConteudo type="text" placeholder="{{datas.conteudo}}"></textarea>
+                    <select class="select" [(ngModel)]=statusChange>
+                        <option value="" selected disabled hidden>{{datas.lista}}</option>
+                        <option [value]="s.value" *ngFor="let s of status">
+                            {{s.nome}}
+                        </option>
+                    </select>
+                    <div>
+                        <button class="button-card" (click)="alterarCard(datas)">Alterar Cartão</button>
+                    </div>
+                </div>
+
+                <div *ngIf="!datas.alteracaoCard">
+                    <div class="img-change">
+                        <img class="width-15 margin-3" (click)="alterarCard(datas)"
+                            src="../assets/icone-escrever.png" alt="">
+                    </div>
+                    <div class="title">{{datas.titulo}}</div>
+                    <p class="border-bottom"></p>
+                    <p class="description">{{datas.conteudo}}</p>
+                </div>
+                <div class="img-delete"><img class="width-15" (click)="excluirCard(datas.id)"
+                        src="../assets/delete-189.png" alt="">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="width-25">
+            <h2 class="margin-0">DONE</h2>
+            <div class="align-center container-card" *ngFor="let datas of getListDone">
+
+                <div *ngIf="datas.alteracaoCard">
+                    <input class="margin-10 input-text-card" [(ngModel)]=datas.novoTitulo type="text"
+                        placeholder="{{datas.titulo}}">
+                    <textarea class="text-area-card" rows="4" cols="23"
+                        [(ngModel)]=datas.novoConteudo type="text" placeholder="{{datas.conteudo}}"></textarea>
+                    <select class="select" [(ngModel)]=statusChange>
+                        <option value="" selected disabled hidden>{{datas.lista}}</option>
+                        <option [value]="s.value" *ngFor="let s of status">
+                            {{s.nome}}
+                        </option>
+                    </select>
+                    <div>
+                        <button class="button-card" (click)="alterarCard(datas)">Alterar Cartão</button>
+                    </div>
+                </div>
+
+                <div *ngIf="!datas.alteracaoCard">
+                    <div class="img-change">
+                        <img class="width-15 margin-3" (click)="alterarCard(datas)"
+                            src="../assets/icone-escrever.png" alt="">
+                    </div>
+                    <div class="title">{{datas.titulo}}</div>
+                    <p class="border-bottom"></p>
+                    <p class="description">{{datas.conteudo}}</p>
+                </div>
+                <div class="img-delete"><img class="width-15" (click)="excluirCard(datas.id)"
+                        src="../assets/delete-189.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
